@@ -1,0 +1,8 @@
+# <file system> <mount point> <type> <options> <dump> <pass>
+proc /proc proc defaults 0 0
+
+# NFS
+192.168.1.1:/exports               /exports      nfs4 auto,_netdev,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
+
+# SSHFS
+user@192.168.1.1:/files /nasfiles fuse.sshfs _netdev,reconnect,connecttimeout=30,reconnect,identityfile=/client-ssh-private,allow_other,default_permissions 0 0
