@@ -1,0 +1,37 @@
+auto lo
+iface lo inet loopback
+
+iface wlp6s0 inet manual
+        address 10.0.7.1/16
+        gateway 10.0.0.1
+        dns-nameservers 10.0.0.1
+        metric 100
+
+auto enp5s0
+iface enp5s0 inet manual
+        address 192.168.1.1/24
+        metric 999
+
+auto enp4s0
+iface enp4s0 inet manual
+        address 192.168.8.8/24
+        metric 1000
+
+auto vmbr0
+iface vmbr0 inet static
+        address 192.168.100.1/24
+        bridge-ports none
+        bridge-stp off
+        bridge-fd 0
+        post-up echo 1 > /proc/sys/net/ipv4/ip_forward
+        post-up iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o wlp6s0 -j MASQUERADE
+        post-down iptables -t nat -D POSTROUTING -s 192.168.100.0/24 -o wlp6s0 -j MASQUERADE
+
+auto vminetvoid
+iface vminetvoid inet static
+        address 192.168.9.1/24
+        bridge-ports none
+        bridge-stp off
+        bridge-fd 0
+
+source /etc/network/interfaces.d/*
