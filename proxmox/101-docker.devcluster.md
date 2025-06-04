@@ -12,6 +12,8 @@ apk add bash
 apk add vim
 chsh -s /bin/bash johnpaul
 
+mkdir -p /home/johnpaul/.ssh
+chmod 700 /home/johnpaul/.ssh
 cp -v /root/.ssh/authorized_keys /home/johnpaul/.ssh/
 chown johnpaul:johnpaul /home/johnpaul/.ssh/authorized_keys
 
