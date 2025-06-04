@@ -1,4 +1,16 @@
-# WORKSTATION
+<h1 align="center">Welcome to my WORKSTATION 👋</h1>
+<p>
+  <img src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://gitlab.com/randop/workstation">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
+  </a>
+  <a href="https://gitlab.com/randop/workstation/-/commits/main">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
+  </a>
+</p>
+
+### 🏠 [Homepage](https://gitlab.com/randop/workstation)
+#### The repository of my workstation resources, configurations, and setup.
 
 >  Copyright © 2010 — 2025 Randolph Ledesma
 >
@@ -17,4 +29,4 @@
 
 Copyright © 2010 — 2025 [Randolph Ledesma](https://gitlab.com/randop).
 
-Last updated on 2025-06-04T15:27:30.000Z
+Last updated on 2025-06-04T15:32:54.000Z
