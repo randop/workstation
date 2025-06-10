@@ -13,6 +13,13 @@ apt install \
     cryptsetup
 ```
 
+## LUKS
+```bash
+cryptsetup open /documents-safe.disk safedisk
+mkdir /mnt/safedisk
+mount /dev/mapper/safedisk /mnt/safedisk
+```
+
 ### Time sync
 #### Restart the chrony service to apply changes
 ```bash
