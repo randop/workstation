@@ -9,7 +9,8 @@ apt install \
     kdevelop \
     git \
     meson \
-    cmake
+    cmake \
+    cryptsetup
 ```
 
 ### Time sync
