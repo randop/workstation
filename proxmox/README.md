@@ -10,7 +10,8 @@ apt install \
     git \
     meson \
     cmake \
-    cryptsetup
+    cryptsetup \
+    kde-spectacle
 ```
 
 ## LUKS
