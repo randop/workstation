@@ -7,7 +7,8 @@ apt install \
     mesa-vulkan-drivers \
     ark \
     kdevelop \
-    git
+    git \
+    meson
 ```
 
 ### Time sync
