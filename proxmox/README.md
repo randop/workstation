@@ -8,7 +8,8 @@ apt install \
     ark \
     kdevelop \
     git \
-    meson
+    meson \
+    cmake
 ```
 
 ### Time sync
