@@ -11,7 +11,8 @@ apt install \
     meson \
     cmake \
     cryptsetup \
-    kde-spectacle
+    kde-spectacle \
+    pkg-config
 ```
 
 ## LUKS
