@@ -12,7 +12,8 @@ apt install \
     cmake \
     cryptsetup \
     kde-spectacle \
-    pkg-config
+    pkg-config \
+    gwenview
 ```
 
 ## LUKS
