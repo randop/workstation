@@ -1,0 +1,6 @@
+[Tue Jun 17 22:02:22 UTC 2025] BHYVE support z=debian p=/zones/bhyve c=poststate 2:0
+[Tue Jun 17 22:02:22 UTC 2025] BHYVE support z=debian p=/zones/bhyve c=prestate 2:1
+INFO:root:Zone name: debian
+DEBUG:root:Found custom acpi attribute - "off"
+DEBUG:root:Found custom bootrom attribute - "BHYVE_RELEASE"
+[Tue Jun 17 22:02:27 UTC 2025] BHYVE support z=debian p=/zones/bhyve c=poststate 2:1
