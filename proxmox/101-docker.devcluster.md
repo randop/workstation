@@ -30,3 +30,9 @@ docker info
 ```bash
 docker run --rm hello-world
 ```
+
+## Resize vm root disk
+> USAGE: pct resize <vmid> <disk> <size> [OPTIONS]
+```bash
+pct resize 101 rootfs 24G
+```
