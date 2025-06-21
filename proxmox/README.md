@@ -13,7 +13,8 @@ apt install \
     cryptsetup \
     kde-spectacle \
     pkg-config \
-    gwenview
+    gwenview \
+    print-manager
 ```
 
 ## LUKS
