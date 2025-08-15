@@ -14,7 +14,9 @@ apt install \
     kde-spectacle \
     pkg-config \
     gwenview \
-    print-manager
+    print-manager \
+    xel \
+    wl-clipboard
 ```
 
 ## LUKS
