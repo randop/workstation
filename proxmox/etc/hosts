@@ -2,6 +2,9 @@
 192.168.100.1 workstation.devcluster workstation
 192.168.100.2 nodejs.devcluster
 192.168.100.3 docker.devcluster
+192.168.100.4 ubuntu.devcluster
+192.168.100.5 arch.devcluster
+192.168.100.6 container.devcluster
 
 # The following lines are desirable for IPv6 capable hosts
 
