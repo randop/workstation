@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.22-2",
+    "lastTouchedAt": "2026-02-23T12:46:24.834Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-23T09:54:37.705Z",
+    "lastRunVersion": "2026.2.22-2",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "browser": {
+    "enabled": true,
+    "remoteCdpTimeoutMs": 15000,
+    "remoteCdpHandshakeTimeoutMs": 30000,
+    "executablePath": "/home/johnpaul/.local/share/flatpak/exports/bin/io.github.ungoogled_software.ungoogled_chromium",
+    "headless": false,
+    "noSandbox": false,
+    "attachOnly": false,
+    "defaultProfile": "chrome",
+    "profiles": {
+      "openclaw": {
+        "cdpPort": 18800,
+        "color": "#FF4500"
+      },
+      "chrome": {
+        "cdpUrl": "http://127.0.0.1:18792",
+        "driver": "extension",
+        "color": "#00AA00"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "custom-integrate-api-nvidia-com": {
+        "baseUrl": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "nvapi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "moonshotai/kimi-k2.5",
+            "name": "Kimi k2.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 16000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "custom-integrate-api-nvidia-com/moonshotai/kimi-k2.5"
+      },
+      "models": {
+        "custom-integrate-api-nvidia-com/moonshotai/kimi-k2.5": {
+          "alias": "nvidia-kimi"
+        }
+      },
+      "workspace": "/home/johnpaul/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        },
+        "boot-md": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "irc": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "8c313b9f7bf94b91f0348b8e796b369be3ee21c0a7a20e5608a6dbf8033c6ad6"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": true
+      }
+    }
+  }
+}

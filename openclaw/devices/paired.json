@@ -1,0 +1,73 @@
+{
+  "9cdae9d7d0c813f98d0f51ff2ed5bd5cd8721dda7e17dc7739cbd2fab2dcd552": {
+    "deviceId": "9cdae9d7d0c813f98d0f51ff2ed5bd5cd8721dda7e17dc7739cbd2fab2dcd552",
+    "publicKey": "ArYDi2TvOtxhXSPE2ggYYsAEPXqeVmaNtB0r0Li9-lI",
+    "platform": "Linux x86_64",
+    "clientId": "openclaw-control-ui",
+    "clientMode": "webchat",
+    "role": "operator",
+    "roles": [
+      "operator"
+    ],
+    "scopes": [
+      "operator.admin",
+      "operator.approvals",
+      "operator.pairing"
+    ],
+    "approvedScopes": [
+      "operator.admin",
+      "operator.approvals",
+      "operator.pairing"
+    ],
+    "tokens": {
+      "operator": {
+        "token": "Oam7R8H9NcEXcZQEy_1qPMwiCN7mb2RnS7vB464XQzA",
+        "role": "operator",
+        "scopes": [
+          "operator.admin",
+          "operator.approvals",
+          "operator.pairing"
+        ],
+        "createdAtMs": 1771840522831,
+        "lastUsedAtMs": 1772111042762
+      }
+    },
+    "createdAtMs": 1771840522830,
+    "approvedAtMs": 1771840522830
+  },
+  "1c403767768724b9775e041295c70cf2f376db7564207415c851124bba337127": {
+    "deviceId": "1c403767768724b9775e041295c70cf2f376db7564207415c851124bba337127",
+    "publicKey": "JQBzg-nKkfStGK7-EVJJUl-Pvy4ycONLBYU0AFKxXxo",
+    "platform": "Linux x86_64",
+    "clientId": "openclaw-control-ui",
+    "clientMode": "webchat",
+    "role": "operator",
+    "roles": [
+      "operator"
+    ],
+    "scopes": [
+      "operator.admin",
+      "operator.approvals",
+      "operator.pairing"
+    ],
+    "approvedScopes": [
+      "operator.admin",
+      "operator.approvals",
+      "operator.pairing"
+    ],
+    "tokens": {
+      "operator": {
+        "token": "kz1kTRgdXfRqDYJhTP8TeD6ND-oBxRM4nIKQ3sm9G_s",
+        "role": "operator",
+        "scopes": [
+          "operator.admin",
+          "operator.approvals",
+          "operator.pairing"
+        ],
+        "createdAtMs": 1771844460029
+      }
+    },
+    "createdAtMs": 1771844460029,
+    "approvedAtMs": 1771844460029
+  }
+}
