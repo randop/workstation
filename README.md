@@ -12,7 +12,7 @@
 ### 🏠 [Homepage](https://gitlab.com/randop/workstation)
 #### The repository of my workstation resources, configurations, and setup.
 
->  Copyright © 2010 — 2025 Randolph Ledesma
+>  Copyright © 2010 — 2026 Randolph Ledesma
 >
 > Licensed under the Apache License, Version 2.0 (the "License");
 > you may not use this file except in compliance with the License.
@@ -27,6 +27,6 @@
 > limitations under the License.
 >
 
-Copyright © 2010 — 2025 [Randolph Ledesma](https://gitlab.com/randop).
+Copyright © 2010 — 2026 [Randolph Ledesma](https://gitlab.com/randop).
 
-Last updated on 2025-06-04T16:24:31.000Z
+Last updated on 2026-03-23T11:05:19.000Z
