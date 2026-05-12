@@ -1,3 +1,4 @@
 handle SIGINT nostop noprint pass
 handle SIGTERM nostop noprint pass
 handle SIGUSR1 nostop noprint pass
+handle SIG35 noprint nostop pass
