@@ -38,3 +38,8 @@ basestrap /mnt \
   refind
 ```
 
+## Generate fstab
+```shell
+fstabgen -U /mnt >> /mnt/etc/fstab
+```
+
