@@ -11,6 +11,10 @@ xset s noblank
 # Disable DPMS (monitor power off/standby/suspend)
 xset -dpms
 
+# window manager utilities
+$HOME/.local/bin/xsbar &
+$HOME/.local/bin/xwplus
+
 # audio
 killall pipewire
 killall pipewire-pulse
@@ -21,7 +25,11 @@ pipewire-pulse &
 sleep 1
 wireplumber &
 
-$HOME/.local/bin/xsbar &
-$HOME/.local/bin/xwplus
+# auto-start applications
+$HOME/opt/kitty/bin/kitty --class btop btop &
+$HOME/opt/kitty/bin/kitty --class console &
+$HOME/opt/kitty/bin/kitty --class neovim nvim ~/projects &
+/usr/local/bin/st -c lazygit &
 
+# launch dwm
 exec dbus-launch --exit-with-session dwm
