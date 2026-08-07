@@ -80,6 +80,12 @@ cat > /boot/refind_linux.conf <<EOF
 EOF
 
 # Example of /boot/refind_linux.conf
-#"Boot Artix" "root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx rw"
+#"Boot Artix" "root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx rw rootwait video=1920x1080 "
 ```
 
+## Conclude base installation
+```shell
+exit
+umount -R /mnt
+reboot
+```
