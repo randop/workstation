@@ -175,7 +175,8 @@ pacman -S base-devel \
   xorg-xset \
   xorg-xsetroot \
   xorg-xrandr \
-  libxkbcommon
+  libxkbcommon \
+  xsel
 ```
 
 ## Compile `dwm` bundle
@@ -264,3 +265,9 @@ s6 repo sync && s6 set commit && s6 live install
 s6-rc -u change xdm 
 ```
 
+## Install core utilities
+```shell
+pacman -S \
+  cryptsetup \
+  pass
+```
