@@ -229,3 +229,16 @@ mkinitcpio -P
 # Reboot required
 reboot
 ```
+
+## Install cpu microcode
+```shell
+# For intel systems
+pacman -S intel-ucode
+
+# For amd systems
+pacman -S amd-ucode
+
+# Reboot required
+reboot
+```
+
