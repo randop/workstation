@@ -258,6 +258,7 @@ chown randolph:randolph /home/randolph/.xsession
 chmod +x /home/randolph/.xsession
 
 s6 set enable xdm
+s6 repo sync && s6 set commit && s6 live install
 s6-rc -u change xdm 
 ```
 
