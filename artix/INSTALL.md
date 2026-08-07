@@ -274,7 +274,8 @@ pacman -S \
   wget \
   ripgrep \
   fd \
-  openssh
+  openssh \
+  tmux
 ```
 
 ## Setup `pass`
