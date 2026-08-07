@@ -273,7 +273,8 @@ pacman -S \
   unzip \
   wget \
   ripgrep \
-  fd
+  fd \
+  openssh
 ```
 
 ## Setup `pass`
@@ -288,4 +289,14 @@ pacman -S \
   meson \
   pkg-config \
   xfsprogs
+```
+
+## Install multimedia software packages
+```shell
+pacman -S \
+  pipewire-jack \
+  pipewire \
+  pipewire-pulse \
+  wireplumber \
+  ffmpeg
 ```
