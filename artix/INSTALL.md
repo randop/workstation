@@ -242,3 +242,22 @@ pacman -S amd-ucode
 reboot
 ```
 
+## Configure and load user desktop
+```shell
+cat > /home/randolph/.xsession <<EOF
+#!/bin/sh
+xset s off -dpms s noblank
+xsetroot -name "$(uname -r -s)"
+export XDG_CURRENT_DESKTOP=X-Generic
+export TERM=xterm-256color
+export PATH="$PATH:$HOME/.local/bin"
+exec dbus-launch --exit-with-session dwm
+EOF
+
+chown randolph:randolph /home/randolph/.xsession
+chmod +x /home/randolph/.xsession
+
+s6 set enable xdm
+s6-rc -u change xdm 
+```
+
