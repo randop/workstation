@@ -271,3 +271,8 @@ pacman -S \
   cryptsetup \
   pass
 ```
+
+## Setup `pass`
+```shell
+pass init 880DF768F4C2A473
+```
