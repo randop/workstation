@@ -175,3 +175,23 @@ pacman -S base-devel \
   xorg-xset \
   xorg-xsetroot
 ```
+
+## Compile `dwm` bundle
+```shell
+mkdir -pv /opt/desktop && cd /opt/desktop
+git clone https://git.suckless.org/dwm
+cd /opt/desktop/dwm
+cp -v /opt/desktop/dwm/config.def.h /opt/desktop/dwm/config.h
+make clean install
+cd /opt/desktop
+git clone https://git.suckless.org/dmenu
+cd /opt/desktop/dmenu
+cp -v /opt/desktop/dmenu/config.def.h /opt/desktop/dmenu/config.h
+make clean install
+cd /opt/desktop
+git clone https://git.suckless.org/st
+cd /opt/desktop/st
+cp -v /opt/desktop/st/config.def.h /opt/desktop/st/config.h
+make clean install
+```
+
