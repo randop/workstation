@@ -280,3 +280,12 @@ pacman -S \
 ```shell
 pass init 880DF768F4C2A473
 ```
+
+## Install development toolchain
+```shell
+pacman -S \
+  cmake \
+  meson \
+  pkg-config \
+  xfsprogs
+```
