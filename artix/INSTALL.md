@@ -300,3 +300,46 @@ pacman -S \
   wireplumber \
   ffmpeg
 ```
+
+## Install and setup `flatpak`
+```shell
+pacman -S flatpak
+flatpak remote-delete flathub
+
+# Login as regular user and install flatpaks
+su -l randolph
+mkdir -vp ~/Downloads
+flatpak --user remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.brave.Browser
+flatpak override --user --filesystem=~/Downloads com.brave.Browser
+flatpak install flathub com.vscodium.codium
+flatpak install flathub com.obsproject.Studio
+flatpak install org.freedesktop.Platform.ffmpeg-full
+flatpak install flathub org.mozilla.firefox
+flatpak install flathub org.kde.kwrite
+flatpak install flathub com.saivert.pwvucontrol
+flatpak install flathub org.kde.krita
+flatpak install flathub org.gimp.GIMP
+flatpak install flathub org.kde.gwenview
+flatpak install flathub org.kde.okular
+flatpak install flathub org.libreoffice.LibreOffice
+flatpak install flathub org.flameshot.Flameshot
+flatpak install flathub rest.insomnia.Insomnia
+flatpak install flathub org.kde.kget
+flatpak install flathub org.kde.kommit
+flatpak install flathub org.kde.kdiff3
+flatpak install flathub org.kde.kate
+flatpak install flathub org.videolan.VLC
+flatpak install flathub cc.arduino.IDE2
+flatpak install flathub cc.arduino.arduinoide
+flatpak install flathub org.filezillaproject.Filezilla
+flatpak install flathub io.dbeaver.DBeaverCommunity
+flatpak install flathub com.mongodb.Compass
+flatpak install flathub com.redis.RedisInsight
+
+# check flatpak list
+flatpak list
+
+# Done
+exit
+```
