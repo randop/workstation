@@ -173,7 +173,9 @@ pacman -S base-devel \
   xdm-s6 \
   xorg-xinit \
   xorg-xset \
-  xorg-xsetroot
+  xorg-xsetroot \
+  xorg-xrandr \
+  libxkbcommon
 ```
 
 ## Compile `dwm` bundle
