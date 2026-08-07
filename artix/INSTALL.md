@@ -66,3 +66,8 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "ephesus5" > /etc/hostname
 ```
 
+## Set root password
+```shell
+passwd
+```
+
