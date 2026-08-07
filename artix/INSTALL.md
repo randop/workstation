@@ -269,7 +269,11 @@ s6-rc -u change xdm
 ```shell
 pacman -S \
   cryptsetup \
-  pass
+  pass \
+  unzip \
+  wget \
+  ripgrep \
+  fd
 ```
 
 ## Setup `pass`
