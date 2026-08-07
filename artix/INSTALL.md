@@ -150,3 +150,28 @@ s6-rc -a list
 s6-rc-db list bundles
 ```
 
+## Install X11 desktop build development packages
+```shell
+pacman -S base-devel \
+  git \
+  meson \
+  cmake \
+  xlibre-xserver \
+  xlibre-xserver-common \
+  xlibre-input-libinput \
+  libx11 \
+  libxft \
+  libxinerama \
+  freetype2 \
+  fontconfig \
+  ttf-hack-nerd \
+  noto-fonts \
+  noto-fonts-emoji \
+  ttf-dejavu \
+  libxcursor \
+  xorg-xdm \
+  xdm-s6 \
+  xorg-xinit \
+  xorg-xset \
+  xorg-xsetroot
+```
