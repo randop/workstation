@@ -71,3 +71,15 @@ echo "ephesus5" > /etc/hostname
 passwd
 ```
 
+## Install and configure bootloader
+```shell
+refind-install
+
+cat > /boot/refind_linux.conf <<EOF
+"Boot Artix"  "root=UUID=$(blkid -s UUID -o value /dev/nvme0n1p2) rw"
+EOF
+
+# Example of /boot/refind_linux.conf
+#"Boot Artix" "root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx rw"
+```
+
