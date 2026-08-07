@@ -195,3 +195,11 @@ cp -v /opt/desktop/st/config.def.h /opt/desktop/st/config.h
 make clean install
 ```
 
+## Create regular user account
+```shell
+pacman -S fish
+useradd -m randolph
+usermod -s /usr/bin/fish randolph
+passwd randolph
+```
+
