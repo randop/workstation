@@ -129,3 +129,24 @@ ln -sfnv /etc/s6/rc/compiled-${TIMESTAMP} /etc/s6/rc/compiled
 # Reboot required
 reboot
 ```
+
+## Setup core services
+```shell
+s6 set enable dhcpcd
+s6 set enable nftables
+s6 set enable dbus
+# Warning or error messages may appear and it is ok
+s6 repo sync && s6 set commit && s6 live install
+
+rm -rf /etc/s6/adminsv/default*
+# Warning or error messages may appear and it is ok
+s6 repo sync && s6 set commit && s6 live install
+
+# Reboot required
+reboot
+
+# Check services
+s6-rc -a list
+s6-rc-db list bundles
+```
+
