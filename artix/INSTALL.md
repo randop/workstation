@@ -203,3 +203,29 @@ usermod -s /usr/bin/fish randolph
 passwd randolph
 ```
 
+## Install and setup nvidia gpu drivers
+> NVIDIA Quadro P400 requires 580.xx driver version
+
+```shell
+# Disable incompatible driver module
+cat > /etc/modprobe.d/blacklist-nouveau.conf <<EOF
+blacklist nouveau
+options nouveau modeset=0
+EOF
+
+pacman -S nvidia-580xx-dkms
+nvidia-xconfig
+
+# check configuration
+cat /etc/X11/xorg.conf
+
+# Edit module configuration and put nvidia drivers
+# MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+vim /etc/mkinitcpio.conf
+
+# Rebuild system modules
+mkinitcpio -P
+
+# Reboot required
+reboot
+```
