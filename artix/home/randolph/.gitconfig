@@ -1,0 +1,41 @@
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	mg = merge --no-ff
+	brdate = branch --sort=-committerdate
+	mgm = merge --no-ff --no-commit
+	dfc = diff-tree --no-commit-id --name-only -r
+	au = !git ls-files -v | grep \"^[[:lower:]]\"
+
+[github]
+  name = Randolph Ledesma
+  email = randopledesma+gitlab@hotmail.com
+
+[gitlab]
+  name = Randolph Ledesma
+  email = randopledesma+gitlab@hotmail.com
+
+[init]
+  templatedir = ~/.git-templates
+
+[user]
+	useConfigOnly = true
+	name = Randolph Ledesma
+	email = randolph+gitlab@hotmail.com
+	signingkey = 880DF768F4C2A473
+
+[commit]
+	gpgsign = true
+
+[core]
+	pager = more
+
+[credential]
+	helper = /home/randolph/.local/bin/methuselah
