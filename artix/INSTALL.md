@@ -43,3 +43,8 @@ basestrap /mnt \
 fstabgen -U /mnt >> /mnt/etc/fstab
 ```
 
+## Chroot into the new system
+```shell
+artix-chroot /mnt
+```
+
