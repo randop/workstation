@@ -48,3 +48,9 @@ fstabgen -U /mnt >> /mnt/etc/fstab
 artix-chroot /mnt
 ```
 
+## Set timezone
+```shell
+ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+hwclock --systohc
+```
+
