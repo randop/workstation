@@ -1,0 +1,1 @@
+savedcmd_r8127.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T /usr/lib/modules/7.1.8-artix1-3/build/scripts/module.lds -o r8127.ko r8127.o r8127.mod.o .module-common.o

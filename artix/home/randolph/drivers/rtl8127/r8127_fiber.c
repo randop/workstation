@@ -263,16 +263,7 @@ rtl8127_hw_fiber_phy_config(struct rtl8127_private *tp)
 bool
 rtl8127_check_fiber_mode_support(struct rtl8127_private *tp)
 {
-        switch(tp->mcfg) {
-        case CFG_METHOD_2: {
-                u8 tmp = (u8)rtl8127_mac_ocp_read(tp, 0xD006);
-                if (tmp == 0x07)
-                        tp->HwFiberModeVer = FIBER_MODE_RTL8127ATF;
-        }
-        break;
-        default:
-                break;
-        }
-
-        return (HW_FIBER_MODE_ENABLED(tp)) ? true : false;
+	// Force SFP mode
+        tp->HwFiberModeVer = FIBER_MODE_RTL8127ATF;
+        return true;
 }

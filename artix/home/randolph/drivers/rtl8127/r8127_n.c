@@ -4786,6 +4786,12 @@ rtl8127_is_autoneg_mode_valid(u32 autoneg)
 static bool
 rtl8127_is_speed_mode_valid(struct rtl8127_private *tp, u32 speed)
 {
+
+	/* Force accept 1G and 10G */
+	if (speed == SPEED_1000 || speed == SPEED_10000) {
+		return true;
+	}
+
         if (HW_FIBER_MODE_ENABLED(tp)) {
                 switch(speed) {
                 case SPEED_10000:
@@ -12307,6 +12313,8 @@ rtl8127_init_software_variable(struct net_device *dev)
         tp->UseSwPaddingShortPkt = TRUE;
 
         rtl8127_check_fiber_mode_support(tp);
+	// Force SFP fiber optic mode
+	tp->HwFiberModeVer = FIBER_MODE_RTL8127ATF;
         if (HW_FIBER_MODE_ENABLED(tp)) {
                 eee_enable = 0;
                 eee_giga_lite = 0;
