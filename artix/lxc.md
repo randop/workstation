@@ -412,5 +412,7 @@ arch-test login:
 
 ### Attach and login as sub-user
 ```shell
+cgjoin
+echo $fish_pid > /sys/fs/cgroup/user/randolph/lxc/cgroup.procs
 lxc-attach -n arch-test -l DEBUG -- su - johnpaul
 ```
