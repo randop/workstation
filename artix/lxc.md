@@ -62,3 +62,8 @@ lxc.mount.auto = proc:mixed sys:ro cgroup:mixed
 lxc.apparmor.profile = unconfined
 EOF
 ```
+
+### Allow nonroot user to create network interfaces
+```shell
+echo "randolph veth lxcbr0 10" >> /etc/lxc/lxc-usernet
+```
