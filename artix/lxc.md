@@ -409,4 +409,8 @@ Arch Linux 6.18.41-1-lts (console)
 
 arch-test login:
 ```
+
+### Attach and login as sub-user
+```shell
+lxc-attach -n arch-test -l DEBUG -- su - johnpaul
 ```
