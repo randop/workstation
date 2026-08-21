@@ -484,3 +484,9 @@ lxc-create -n trixie -t download -- \
                       --release trixie \
                       --arch amd64
 ```
+
+### Shutdown containers
+```bash
+lxc-stop -n arch-test
+lxc-stop -n trixie
+```
