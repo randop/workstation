@@ -65,5 +65,26 @@ EOF
 
 ### Allow nonroot user to create network interfaces
 ```shell
-echo "randolph veth lxcbr0 10" >> /etc/lxc/lxc-usernet
+echo "<REPLACE_WITH_USERNAME> veth lxcbr0 10" >> /etc/lxc/lxc-usernet
+```
+
+### Create bridge network and use dhcpcd
+```shell
+ip link add name lxcbr0 type bridge
+ip link set eth0 master lxcbr0
+ip link set eth0 up
+ip link set lxcbr0 up
+
+dhcpcd -k
+# Stop any existing dhcpcd on eth0
+dhcpcd -k eth0 2>/dev/null || true
+killall dhcpcd 2>/dev/null || true
+
+# Start dhcpcd on the bridge
+dhcpcd lxcbr0
+
+# check internet connection
+ip addr show lxcbr0
+ip route
+ping -c 3 1.1.1.1
 ```
