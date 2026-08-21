@@ -110,6 +110,21 @@ chmod +x /root/lxc-delegate.sh
 /root/lxc-delegate.sh
 ```
 
+### Compile and install `cgjoin`
+```bash
+su -l randolph
+mkdir -p ~/projects
+cd ~/projects
+git clone https://gitlab.com/randop/applications.git
+cd applications/cgjoin
+gcc -O2 -o cgjoin main.c
+
+su -l root
+cd /home/randolph/projects/applications/cgjoin
+install -o root -g root -m 4755 cgjoin /usr/local/bin/cgjoin
+
+```
+
 ### Provision arch linux guest container
 
 #### check lxc configuration
