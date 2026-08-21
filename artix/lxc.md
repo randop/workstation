@@ -61,7 +61,7 @@ lxc.net.0.flags = up
 lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
 
 # for unprivileged containers
-lxc.mount.auto = proc:mixed sys:ro cgroup:mixed
+lxc.mount.auto = proc:mixed sys:ro
 lxc.apparmor.profile = unconfined
 EOF
 ```
