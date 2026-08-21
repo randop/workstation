@@ -137,8 +137,11 @@ USER=randolph
 echo "+cpuset +cpu +io +memory +pids" > "$CG/cgroup.subtree_control" 2>/dev/null
 mkdir -p "$CG/user/$USER"
 chown "$USER:$USER" "$CG/user/$USER"
-ls -lah "$CG/user/$USER/cgroup.subtree_control"
 echo "+cpuset +cpu +io +memory +pids" > "$CG/user/$USER/cgroup.subtree_control"
+sleep 1
+chown "$USER:$USER" /sys/fs/cgroup/user/$USER/cgroup.procs
+chown "$USER:$USER" /sys/fs/cgroup/user/$USER/cgroup.threads
+chown "$USER:$USER" /sys/fs/cgroup/user/$USER/cgroup.subtree_control
 EOF
 
 chmod +x /root/lxc-delegate.sh
@@ -235,6 +238,9 @@ lxc-create -n arch-test -t download -- \
              --arch amd64
 
 cgjoin
+echo $fish_pid > /sys/fs/cgroup/user/randolph/cgroup.procs
+
+mkdir -pv /sys/fs/cgroup/user/randolph/lxc
 
 # fish
 echo $fish_pid > /sys/fs/cgroup/user/randolph/lxc/cgroup.procs
@@ -450,4 +456,22 @@ arch-test login:
 cgjoin
 echo $fish_pid > /sys/fs/cgroup/user/randolph/lxc/cgroup.procs
 lxc-attach -n arch-test -l DEBUG -- su - johnpaul
+```
+
+### Check guest container info
+```bash
+hostnamectl
+```
+```bash
+ Static hostname: ephesus9
+       Icon name: computer-container
+         Chassis: container 📦
+      Machine ID: 00000000000000000000000000000000
+         Boot ID: 39479bb28f3d41f3ae36a282c1865892
+  Virtualization: lxc
+Operating System: Arch Linux    
+        OS Image: archlinux
+OS Image Version: 2026.08.01
+          Kernel: Linux 6.18.41-1-lts
+    Architecture: x86-64
 ```
