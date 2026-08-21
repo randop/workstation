@@ -475,3 +475,12 @@ OS Image Version: 2026.08.01
           Kernel: Linux 6.18.41-1-lts
     Architecture: x86-64
 ```
+
+### Provision debian trixie lxc container
+```bash
+lxc-create -n trixie -t download -- \
+                      --server ca.images.linuxcontainers.org \
+                      --dist debian \
+                      --release trixie \
+                      --arch amd64
+```
