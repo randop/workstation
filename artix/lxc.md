@@ -41,3 +41,7 @@ usermod --add-subuids 100000-165535 --add-subgids 100000-165535 <REPLACE_WITH_US
 grep <YOURUSER> /etc/subuid /etc/subgid
 ```
 
+### Create the user LXC configuration
+```shell
+mkdir -p ~/.config/lxc ~/.local/share/lxc ~/.cache/lxc
+```
