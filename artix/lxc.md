@@ -41,7 +41,7 @@ grep <YOURUSER> /etc/subuid /etc/subgid
 ```
 
 ### Create the user LXC configuration
-```shell
+```bash
 mkdir -p ~/.config/lxc ~/.local/share/lxc ~/.cache/lxc
 
 cat << EOF | tee ~/.config/lxc/default.conf
@@ -88,3 +88,20 @@ ip addr show lxcbr0
 ip route
 ping -c 3 1.1.1.1
 ```
+
+### Setup Cgroup v2 delegation for nonroot user on s6 non-systemd
+```shell
+# Create a delegated hierarchy
+mkdir -p /sys/fs/cgroup/user.slice/user-$(id -u randolph).slice
+chown -R randolph:randolph /sys/fs/cgroup/user.slice/user-$(id -u randolph).slice
+
+# Enable controllers (run as root)
+echo "+cpu +cpuset +memory +io +pids" > /sys/fs/cgroup/user.slice/cgroup.subtree_control
+```
+
+Before starting any container, nonroot user must enter the delegated cgroup:
+```shell
+echo $$ > /sys/fs/cgroup/user.slice/user-$(id -u)/cgroup.procs
+```
+
+
