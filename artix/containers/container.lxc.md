@@ -85,6 +85,18 @@ docker buildx create --name container --driver docker-container --use
 # Bootstrap it (starts the builder container)
 docker buildx inspect --bootstrap
 
+# if error:
+# [+] Building 19.6s (1/1) FINISHED
+# => ERROR [internal] booting buildkit                                                                                                                                   19.6s
+# => => pulling image moby/buildkit:buildx-stable-1                                                                                                                      17.7s
+# => => creating container buildx_buildkit_container0                                                                                                                     0.3s
+# ------
+#  > [internal] booting buildkit:
+# ------
+# ERROR: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: error mounting "sysfs" to rootfs at "/sys": mount src=sysfs, dst=/sys, dstFd=/proc/thread-self/fd/14, flags=MS_NOSUID|MS_NODEV|MS_NOEXEC: operation not permitted
+docker buildx rm container 2>/dev/null || true
+docker buildx rm mybuilder 2>/dev/null || true
+
 # Use the default
 docker buildx use default
 docker buildx inspect --bootstrap
