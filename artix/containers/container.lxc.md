@@ -72,3 +72,29 @@ EOF
 
 sudo /etc/init.d/docker restart
 ```
+
+### Install and setup Docker BuildX
+```bash
+# verify if build is available
+docker buildx version
+# github.com/docker/buildx v0.36.1 1d8dde89b8aba914e05e45366770736fea1fd690
+
+# Create and use a new builder
+docker buildx create --name container --driver docker-container --use
+
+# Bootstrap it (starts the builder container)
+docker buildx inspect --bootstrap
+
+# Use the default
+docker buildx use default
+docker buildx inspect --bootstrap
+
+# check list
+docker buildx ls
+
+# test multi-platform build
+docker buildx build --platform linux/amd64,linux/arm64 -t myimage:latest --push .
+
+# Optional: Make Buildx the default builder permanently
+docker buildx install
+```
