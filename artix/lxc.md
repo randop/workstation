@@ -98,6 +98,7 @@ mkdir -p /etc/s6/adminsv/lxc-network/dependencies.d
 
 touch /etc/s6/adminsv/lxc-network/dependencies.d/udevadm
 touch /etc/s6/adminsv/lxc-network/dependencies.d/network-detection
+touch /etc/s6/adminsv/lxc-network/dependencies.d/dhcpcd
 
 cat > /etc/s6/adminsv/lxc-network/type <<'EOF'
 oneshot
