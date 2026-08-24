@@ -12,7 +12,7 @@ sudo sysctl --system
 
 ### Install packages
 ```shell
-pacman -S lxc lxcfs shadow
+pacman -S lxc lxcfs shadow qemu-user-static qemu-user-static-binfmt
 ```
 Package descriptions:
 ```
@@ -21,6 +21,17 @@ world/lxc 1:7.0.0-2
 
 world/lxcfs 7.0.0-2
     FUSE filesystem for LXC
+
+world/qemu-user-static 11.1.0-1
+    QEMU static user mode emulation
+
+world/qemu-user-static-binfmt 11.1.0-1
+    Binary format rules for QEMU static user mode emulation
+```
+
+### Mount cross-platform runtime binaries
+```bash
+mount -t binfmt_misc binfmt_misc /proc/sys/fs/binfmt_misc
 ```
 
 ### Allocate subordinate UID/GID ranges
