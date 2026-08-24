@@ -29,6 +29,10 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "console",  NULL,       NULL,       0,       0,           -1 },
+	{ "neovim",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "brave",  NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "lazygit",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "btop",  NULL,       NULL,       1 << 8,       0,           1 },
 };
 
@@ -46,8 +50,13 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
-/* key definitions */
-#define MODKEY Mod1Mask
+/* Default: modifier key is Alt
+#define MODKEY Mod1Mask 
+*/
+
+/* Customized: modifier key to Super/Windows key */
+#define MODKEY Mod4Mask
+
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
