@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+background { /usr/local/sbin/lxc-network.sh }
