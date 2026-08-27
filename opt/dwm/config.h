@@ -34,6 +34,11 @@ static const Rule rules[] = {
 	{ "brave",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "lazygit",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "btop",  NULL,       NULL,       1 << 8,       0,           1 },
+	{ "lazywork1",  NULL,       NULL,       0,       0,           1 },
+	{ "lazywork2",  NULL,       NULL,       1 << 1,       0,           1 },
+	{ "lazywork3",  NULL,       NULL,       1 << 2,       0,           1 },
+	{ "lazywork4",  NULL,       NULL,       1 << 3,       0,           1 },
+	{ "lazywork5",  NULL,       NULL,       1 << 4,       0,           1 },
 };
 
 /* layout(s) */
