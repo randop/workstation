@@ -113,3 +113,22 @@ flatpak update com.ultimaker.cura
 - USB printer not detected: confirm the udev rule is loaded and the device node permissions are correct (`ls -l /dev/ttyUSB* /dev/ttyACM*`).
 
 - Desktop menu entry missing: log out and back in, or run `update-desktop-database`.
+
+---
+
+## OpenSCAD
+The Programmers Solid 3D CAD Modeller
+
+OpenSCAD is a software for creating solid 3D CAD models. Unlike most free software for creating 3D models (such as Blender) it does not focus on the artistic aspects of 3D modelling but instead on the CAD aspects. Thus it might be the application you are looking for when you are planning to create 3D models of machine parts but pretty sure is not what you are looking for when you are more interested in creating computer-animated movies.
+
+
+### Install and configure
+```bash
+flatpak install flathub org.openscad.OpenSCAD
+flatpak info --show-permissions org.openscad.OpenSCAD
+flatpak override --user --filesystem=$HOME/Public org.openscad.OpenSCAD
+flatpak override --user --nofilesystem=home org.openscad.OpenSCAD
+flatpak override --user --filesystem=$HOME/Downloads org.openscad.OpenSCAD
+```
+
+
