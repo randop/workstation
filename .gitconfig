@@ -1,0 +1,50 @@
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  unstage = reset HEAD --
+  last = log -1 HEAD
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  mg = merge --no-ff
+  brdate = branch --sort=-committerdate
+  mgm = merge --no-ff --no-commit
+  dfc = diff-tree --no-commit-id --name-only -r
+  au = !git ls-files -v | grep \"^[[:lower:]]\"
+
+[init]
+  templatedir = ~/.git-templates
+  defaultBranch = master
+
+# Rebase (instead of merge) on pull
+[pull]
+  rebase = true
+
+# Automatically set upstream branch on push
+[push]
+  autoSetupRemote = true
+
+# TODO: update email details
+[user]
+  useConfigOnly = true
+  name = Randolph Ledesma
+  email =
+  signingkey = 880DF768F4C2A473
+
+[commit]
+  gpgsign = true
+
+[core]
+  pager = more
+
+# TODO: update path
+[credential]
+  helper = $HOME/.local/bin/methuselah --macro=git
+
+# Record and reuse conflict resolutions
+# Apply stored conflict resolutions automatically
+[rerere]
+  enabled = true
+  autoupdate = true
