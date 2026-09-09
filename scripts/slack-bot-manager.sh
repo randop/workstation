@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # slack-bot-manager.sh
-# version: 1.0.0 (Sep 9, 2026)
+# version: 1.0.1 (Sep 9, 2026)
 # Slack AppBot Manager
 #
 # Requirements: bash >= 4, curl, jq
@@ -13,7 +13,7 @@ IFS=$'\n\t'
 # Configuration
 # ---------------------------------------------------------------------------
 readonly SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
-readonly SCRIPT_VERSION="1.0.0"
+readonly SCRIPT_VERSION="1.0.1"
 readonly SLACK_API_BASE="https://slack.com/api"
 readonly DEFAULT_TIMEOUT=30
 readonly LOG_FILE="${SLACK_LOG_FILE:-slack.log}"
@@ -193,6 +193,25 @@ cmd_delete_message() {
 cmd_list_channels() {
   local types="${1:-public_channel,private_channel}" limit="${2:-200}"
   slack_api "conversations.list" "GET" "bot" "" "types=${types}&limit=${limit}&exclude_archived=true" | pp
+}
+
+cmd_create_channel() {
+  local name="${1:-}"
+  local is_private="${2:-false}"
+
+  [[ -z "${name}" ]] && die "Usage: $SCRIPT_NAME create-channel <name> [true|false]"
+
+  case "${is_private}" in
+  true | false) ;;
+  *) die "Second argument must be true or false (private channel)" ;;
+  esac
+
+  local payload
+  payload="$(jq -n --arg n "${name}" --argjson p "${is_private}" \
+    '{name: $n, is_private: $p}')"
+
+  info "Creating channel #${name}..."
+  slack_api "conversations.create" "POST" "bot" "${payload}" | pp
 }
 
 cmd_channel_info() {
@@ -416,6 +435,7 @@ Bot commands:
   update-message <channel> <ts> <text>
   delete-message <channel> <ts>
   list-channels [types] [limit]
+  create-channel <name> [true|false]
   channel-info <channel_id>
   list-users [limit]
   user-info <user_id>
@@ -467,6 +487,7 @@ main() {
   update-message) cmd_update_message "$@" ;;
   delete-message) cmd_delete_message "$@" ;;
   list-channels) cmd_list_channels "$@" ;;
+  create-channel) cmd_create_channel "$@" ;;
   channel-info) cmd_channel_info "$@" ;;
   list-users) cmd_list_users "$@" ;;
   user-info) cmd_user_info "$@" ;;
