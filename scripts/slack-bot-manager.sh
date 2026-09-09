@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
-# =============================================================================
 # slack-bot-manager.sh
 # version: 1.0.0 (Sep 9, 2026)
 # Slack AppBot Manager
-# =============================================================================
-# Handles everyday bot operations and full app lifecycle using the official
-# Slack Web API and App Manifest APIs.
-# =============================================================================
+#
 # Requirements: bash >= 4, curl, jq
-# Optional: yq (only if you use YAML manifests)
-# =============================================================================
+# Optional: yq (for YAML manifests)
 
 set -euo pipefail
 IFS=$'\n\t'
@@ -18,22 +13,19 @@ IFS=$'\n\t'
 # Configuration
 # ---------------------------------------------------------------------------
 readonly SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
+readonly SCRIPT_VERSION="1.0.0"
 readonly SLACK_API_BASE="https://slack.com/api"
 readonly DEFAULT_TIMEOUT=30
 readonly LOG_FILE="${SLACK_LOG_FILE:-slack.log}"
 readonly MAX_RETRIES=3
 readonly RETRY_DELAY=2
 
-# Colors (only when running in a terminal)
 if [[ -t 1 ]]; then
   readonly RED='\033[0;31m' GREEN='\033[0;32m' YELLOW='\033[1;33m' BLUE='\033[0;34m' CYAN='\033[0;36m' NC='\033[0m'
 else
   readonly RED='' GREEN='' YELLOW='' BLUE='' CYAN='' NC=''
 fi
 
-# ---------------------------------------------------------------------------
-# Logging
-# ---------------------------------------------------------------------------
 log() {
   local level="$1"
   shift
@@ -51,25 +43,20 @@ die() {
   exit 1
 }
 
-# ---------------------------------------------------------------------------
-# Token checks
-# ---------------------------------------------------------------------------
 require_bot_token() {
   if [[ -z "${SLACK_BOT_TOKEN:-}" ]]; then
-    die "SLACK_BOT_TOKEN is required for this command (starts with xoxb-)"
+    die "SLACK_BOT_TOKEN is required (starts with xoxb-)"
   fi
 }
 
 require_config_token() {
   if [[ -z "${SLACK_CONFIG_TOKEN:-}" ]]; then
-    die "SLACK_CONFIG_TOKEN is required for app management commands (starts with xoxe.xoxp-)"
+    die "SLACK_CONFIG_TOKEN is required (starts with xoxe.xoxp-)"
   fi
 }
 
-# ---------------------------------------------------------------------------
-# Core API helper
-# ---------------------------------------------------------------------------
-# Usage: slack_api <method> <http_method> <token_type> [json_body] [query_string]
+# Core API caller
+# Usage: slack_api <method> <http_method> <token_type> [json_body] [query]
 slack_api() {
   local method="$1"
   local http_method="${2:-POST}"
@@ -125,7 +112,7 @@ slack_api() {
     fi
 
     if ! echo "${response}" | jq -e . >/dev/null 2>&1; then
-      error "Got invalid JSON from ${method}"
+      error "Invalid JSON from ${method}"
       echo "${response}" >&2
       return 1
     fi
@@ -140,7 +127,7 @@ slack_api() {
 
     local err
     err="$(echo "${response}" | jq -r '.error // "unknown_error"')"
-    error "Slack returned an error on ${method}: ${err}"
+    error "Slack error on ${method}: ${err}"
     echo "${response}" | jq . >&2
     return 1
   done
@@ -152,9 +139,9 @@ pp() {
   jq -C . 2>/dev/null || jq .
 }
 
-# =============================================================================
-# Bot commands (need SLACK_BOT_TOKEN)
-# =============================================================================
+# ---------------------------------------------------------------------------
+# Bot commands
+# ---------------------------------------------------------------------------
 
 cmd_auth_test() {
   info "Checking authentication..."
@@ -282,9 +269,9 @@ cmd_revoke_bot_token() {
   slack_api "auth.revoke" "POST" "bot" | pp
 }
 
-# =============================================================================
-# App Manifest commands (need SLACK_CONFIG_TOKEN)
-# =============================================================================
+# ---------------------------------------------------------------------------
+# App Manifest commands
+# ---------------------------------------------------------------------------
 
 cmd_app_create() {
   local manifest_file="${1:-}"
@@ -313,7 +300,7 @@ cmd_app_create() {
   app_id="$(echo "${result}" | jq -r '.app_id // empty')"
   if [[ -n "${app_id}" ]]; then
     info "App created. App ID: ${CYAN}${app_id}${NC}"
-    info "Next step is to install it using the oauth_authorize_url from the response."
+    info "Install it using the oauth_authorize_url from the response."
   fi
 }
 
@@ -379,7 +366,7 @@ cmd_app_validate() {
 
 cmd_rotate_config_token() {
   if [[ -z "${SLACK_CONFIG_REFRESH_TOKEN:-}" ]]; then
-    die "SLACK_CONFIG_REFRESH_TOKEN is required to rotate the config token"
+    die "SLACK_CONFIG_REFRESH_TOKEN is required"
   fi
 
   info "Rotating config token..."
@@ -405,17 +392,21 @@ cmd_rotate_config_token() {
   fi
 }
 
-# =============================================================================
+cmd_version() {
+  echo "${SCRIPT_NAME} ${SCRIPT_VERSION}"
+}
+
+# ---------------------------------------------------------------------------
 # Help
-# =============================================================================
+# ---------------------------------------------------------------------------
 usage() {
   cat <<EOF
-${BLUE}${SCRIPT_NAME}${NC} - Slack Bot and App Manager
+${BLUE}${SCRIPT_NAME}${NC} ${SCRIPT_VERSION} - Slack Bot and App Manager
 
 Environment variables:
-  SLACK_BOT_TOKEN              Bot token (xoxb-...) for normal bot commands
-  SLACK_CONFIG_TOKEN           App config token (xoxe.xoxp-...) for creating/managing apps
-  SLACK_CONFIG_REFRESH_TOKEN   Refresh token used to rotate the config token
+  SLACK_BOT_TOKEN              Bot token (xoxb-...)
+  SLACK_CONFIG_TOKEN           App config token (xoxe.xoxp-...)
+  SLACK_CONFIG_REFRESH_TOKEN   Refresh token for config token rotation
   SLACK_LOG_FILE               Optional log file path
 
 Bot commands:
@@ -444,12 +435,15 @@ App management:
   app-validate <manifest.json>
   rotate-config-token
 
+Other:
+  version
+  help
+
 Examples:
   export SLACK_BOT_TOKEN="xoxb-..."
   $SCRIPT_NAME auth-test
   $SCRIPT_NAME post-message C0123456789 "Hello"
   $SCRIPT_NAME set-presence away
-  $SCRIPT_NAME presence-auto
 
   export SLACK_CONFIG_TOKEN="xoxe.xoxp-..."
   $SCRIPT_NAME app-create ./manifest.json
@@ -491,6 +485,7 @@ main() {
   app-validate) cmd_app_validate "$@" ;;
   rotate-config-token) cmd_rotate_config_token "$@" ;;
 
+  version | -v | --version) cmd_version ;;
   -h | --help | help | "")
     usage
     exit 0
