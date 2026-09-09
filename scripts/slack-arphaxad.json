@@ -32,7 +32,8 @@
         "mpim:read",
         "users:read",
         "reactions:write",
-        "commands"
+        "commands",
+        "channels:manage"
       ]
     }
   },
