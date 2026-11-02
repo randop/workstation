@@ -1,0 +1,22 @@
+#!/bin/sh
+set -eu
+
+NIC=eth0
+BRIDGE=lxcbr0
+
+# Create bridge if it doesn't exist
+ip link show "$BRIDGE" >/dev/null 2>&1 ||
+    ip link add name "$BRIDGE" type bridge
+
+# Attach physical NIC
+ip link set "$NIC" master "$BRIDGE"
+
+# Bring interfaces up
+ip link set "$NIC" up
+ip link set "$BRIDGE" up
+
+# Remove IPv4 from physical NIC
+ip -4 addr flush dev "$NIC"
+
+# Run DHCP in foreground
+exec /usr/bin/dhcpcd -4 -B "$BRIDGE"
